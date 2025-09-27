@@ -1,38 +1,7 @@
 spring:
   application:
     name: app-powerbi
-  ldap:
-    urls: ldap://csjdc01.coopsanjose.local:389
-    # Base DN confirmado por el diagnóstico
-    base: DC=coopsanjose,DC=local
-    # DN del usuario de servicio midas
-    username: CN=midas MDC. core,OU=SEGURIDAD DE LA INFORMACION,DC=coopsanjose,DC=local
-    password: ${LDAP_PASSWORD:Ecuador1}
-    user:
-      # Base relativo - búsqueda desde la raíz del contexto
-      search-base: ""
-      search-filter: (&(objectClass=user)(|(sAMAccountName={0})(userPrincipalName={0})(mail={0})))
-    group:
-      search-base: ""
-      search-filter: (member={0})
-
-# Configuración JWT
-jwt:
-  secret: ${JWT_SECRET:MiClaveSecretaSuperSeguraParaJwtTokensEnActiveDirectory2024CoopSanJose}
-  expiration: 86400000 # 24 horas en millisegundos
-  refresh-expiration: 604800000 # 7 días en millisegundos
-
-# Configuración Active Directory específica
-ad:
-  domain: coopsanjose.local
-  url: ldap://csjdc01.coopsanjose.local:389
-  # Base DN confirmado
-  search-base: DC=coopsanjose,DC=local
-  user-search-base: ""
-  user-search-filter: (&(objectClass=user)(|(sAMAccountName={0})(userPrincipalName={0})(mail={0})))
-  group-search-base: ""
-  service-user: CN=midas MDC. core,OU=SEGURIDAD DE LA INFORMACION,DC=coopsanjose,DC=local
-  service-password: ${AD_SERVICE_PASSWORD:Ecuador1}
+# CONFIGURACION DEL AD - PROTON
 
 
 # POWER BI
