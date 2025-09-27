@@ -36,13 +36,7 @@ ad:
 
 
 # POWER BI
-powerbi:
-  tenantId: a0a348ce-ab4b-4870-9129-efe61cc74758
-  clientId: bc674f7c-ce9a-44a0-9fe8-5b91744042f8
-  clientSecret: GJk8Q~P7lYm976mIGZHPvLOq21nED_0KdHE2JcKP
-
-  workspaceId: ab21bafb-3be1-4521-9476-e6d5f9576452
-  reportId: 0b94ece2-d5a3-43b9-96f8-a3f64390ffef
+# PROTON
 
 server:
   port: 443
