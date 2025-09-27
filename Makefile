@@ -1,0 +1,22 @@
+
+#VARIABLES DE CONFIGURACION
+DOCKER_USER=mariosavala25
+IMAGE_NAME=app-powerbi
+IMAGE_TAG=v1.0.0
+JAR_FILE=target/app-powerbi-0.0.1-SNAPSHOT.jar
+
+#CONSTRUYO LA IMAGEN
+build:
+	docker build -t $(IMAGE_NAME):$(IMAGE_TAG) .
+
+#ETIQUETAR LA IMAGEN PARA DOCKERHUB
+tag:
+	docker tag $(IMAGE_NAME):$(IMAGE_TAG) $(DOCKER_USER)/$(IMAGE_NAME):$(IMAGE_TAG)
+
+#SUBIR LA IMAGEN A DOCKERHUB
+push: tag
+	docker push $(DOCKER_USER)/$(IMAGE_NAME):$(IMAGE_TAG)
+
+#COMANDO PARA DESPLEGAR
+deploy: build push
+
