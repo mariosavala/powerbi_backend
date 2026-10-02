@@ -1,0 +1,60 @@
+server:
+  port: 443
+  ssl:
+    enabled: true
+    key-store: classpath:coopsanjose_fin_ec.pfx
+    key-store-password: ${SSL_PASSWORD}
+    key-store-type: PKCS12
+
+spring:
+  config:
+    import:
+      - vault://secret/dev/user-service/ssl
+      - vault://secret/dev/user-service/db-fbs
+      - vault://secret/dev/user-service/db-coac
+      - vault://secret/dev/user-service/ldap
+      - vault://secret/dev/user-service/tenant
+  cloud:
+    vault:
+      uri: ${VAULT_URI}
+      authentication: approle
+      app-role:
+        role-id: ${VAULT_ROLE_ID}
+        secret-id: ${VAULT_SECRET_ID}
+      kv:
+        enabled: true
+        backend: ${VAULT_SECRET}
+      fail-fast: true
+  ldap:
+    urls: ${LDAP_URL}
+    base: DC=coopsanjose,DC=local
+    username: CN=${LDAP_USERNAME} MDC. core,OU=SEGURIDAD DE LA INFORMACION,DC=coopsanjose,DC=local
+    password: ${LDAP_PASSWORD}
+    user:
+      search-base: ""
+      search-filter: (&(objectClass=user)(|(sAMAccountName={0})(userPrincipalName={0})(mail={0})))
+    group:
+      search-base: ""
+      search-filter: (member={0})
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION}
+  refresh-expiration: ${JWT_REFRESH_EXPIRATION}
+
+ad:
+  domain: coopsanjose.local
+  url: ${LDAP_URL}
+  search-base: DC=coopsanjose,DC=local
+  user-search-base: ""
+  user-search-filter: (&(objectClass=user)(|(sAMAccountName={0})(userPrincipalName={0})(mail={0})))
+  group-search-base: ""
+  service-user: CN=${LDAP_USERNAME} MDC. core,OU=SEGURIDAD DE LA INFORMACION,DC=coopsanjose,DC=local
+  service-password: ${LDAP_PASSWORD}
+
+powerbi:
+  tenantId: ${TENANT_ID}
+  clientId: ${CLIENT_ID}
+  clientSecret: ${CLIENTSECRET}
+  workspaceId: ${WORDSPACE_ID}
+  reportId: ${REPORT_ID}

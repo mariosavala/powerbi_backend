@@ -1,5 +1,6 @@
 
-FROM openjdk:21-jdk-slim
+# Usa la imagen oficial de OpenJDK
+FROM mcr.microsoft.com/openjdk/jdk:21-ubuntu
 
 #DEFINO EL DIRECTORIO DE TRABAJO
 WORKDIR /app

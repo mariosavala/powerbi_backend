@@ -1,19 +1,9 @@
 spring:
   application:
     name: app-powerbi
-# CONFIGURACION DEL AD - PROTON
-
-
-# POWER BI
-# PROTON
-
-server:
-  port: 443
-  ssl:
-    enabled: true
-    key-store: classpath:coopsanjose_fin_ec2025.pfx
-    key-store-password: '**Ecuador.2025!!'
-    key-store-type: PKCS12
+  profiles:
+    active:
+      - ${SPRING_PROFILES_ACTIVE:dev}
 
 logging:
   level:
